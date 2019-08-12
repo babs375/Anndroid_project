@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303f9f</color>
+  <color name="colorAccent">#FF4081</color>
+
+  <color name="btnSignUp">#39796b</color>
+  <color name="btnSignActive">#A9d440</color>
+
+  <color name="overlayBackground">#7f333639</color>
+  <color name="overlayActionBar">#0e0d0e</color>
+  <color name="psts_background_tab_pressed">#1AFFFFFF</color>
+  <color name="primary">#2196F3</color>
+  <color name="primaryDark">#1976D2</color>
+  <color name="yellow">#FFFF00</color>
+  <color name="accent">#FFC107</color>
+  <color name="window_background">#F5F5F5</color>
+  <color name="splash_background">#FFFFFF</color>
+  <color name="white">#FFFFFF</color>
+</resources>
