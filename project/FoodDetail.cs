@@ -11,6 +11,7 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using project.Database;
+using project.Model;
 
 namespace project
 {
@@ -23,8 +24,8 @@ namespace project
         FloatingActionButton btnCart;
         Button numberButton;
         DatabaseL db = new DatabaseL();
-        PhotoAlbum foods;
-        Photo currentFood;
+        FoodObject foods;
+        Food currentFood;
         string Food_name;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,13 +51,26 @@ namespace project
             food_name.Text = data1.mCaption;
             food_price.Text = data1.mPrice.ToString();
             food_description.Text = data1.mDescription;
-            food_image.Id = data1.mPhotoID;
+            food_image.SetImageResource(data1.mPhotoID);
 
             //Cart button
             btnCart.Click += delegate
             {
-                Intent cartIntent = new Intent(this, typeof(Cart));
-                this.StartActivity(cartIntent);
+                ISharedPreferences pref = Application.Context.GetSharedPreferences("UserInfo", FileCreationMode.Private);
+                string userName = pref.GetString("Usermail", String.Empty);
+                try
+                {
+                    var query = db.selectallUser();
+                    var query1 = query.Where(x => x.Email == userName).FirstOrDefault();
+                    Intent cartIntent = new Intent(this, typeof(Cart));
+                    cartIntent.PutExtra("usrID", query1.Uid.ToString());
+                    this.StartActivity(cartIntent);
+                }
+                
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Short).Show();
+                }
             };
 
             // Add item button
@@ -68,10 +82,11 @@ namespace project
                 {
                     var query = db.selectallUser();
                     var query1 = query.Where(x => x.Email == userName).FirstOrDefault();
+
                     UserCart cart = new UserCart()
                     {
-                        Fid = foodid,
-                        Uid = query1.Uid
+                        fdID = foodid,
+                        usrID = query1.Uid
                     };
                     db.insertUserCart(cart);
                     Toast.MakeText(Application.Context, data1.mCaption + " added to cart!", ToastLength.Short).Show();

@@ -16,7 +16,7 @@ using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace project
 {
-    [Activity(Label = "LoginActivity")]
+    [Activity(Label = "LoginActivity", MainLauncher = false)]
     public class LoginActivity : AppCompatActivity
     {
         private TabAdapter adapter;
@@ -32,6 +32,7 @@ namespace project
             viewPager = FindViewById<Android.Support.V4.View.ViewPager>(Resource.Id.viewPager);
             tabLayout = FindViewById<TabLayout>(Resource.Id.tabLayout);
             adapter = new TabAdapter(SupportFragmentManager);
+            adapter.RemoveFragment();
             adapter.AddFragment(new SignInTabFragment(), "Sign In");
             adapter.AddFragment(new SignUpTabFragment(), "Sign Up");
             tabLayout.SetupWithViewPager(viewPager);

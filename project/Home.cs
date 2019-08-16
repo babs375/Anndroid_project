@@ -20,22 +20,24 @@ namespace project
     [Activity(Label = "Home")]
     public class Home : AppCompatActivity
     {
-        TextView textMessage;
-        Android.App.AlertDialog.Builder alert;
-
         HomeMenuFragment f1;
-        //MyLibraryMenuFragment f2;
-        //StoreMenuFragment f3;
-        //AboutusFragment f4;
+        //CartMenuFragment f2;
+        //OrderMenuFragment f3;
+        //SettingsMenuFragment f4;
+        //AboutUsFragment f4;
+
 
         TextView txtFullName;
-        RecyclerView recycler_View;
-        RecyclerView.LayoutManager layoutManager;
         DrawerLayout drawerLayout;
         ActionBarDrawerToggle drawerToggle;
         FloatingActionButton fab;
         NavigationView navigationView;
+        View navHeader;
         Android.Support.V7.Widget.Toolbar toolbar;
+
+        // index to identify current nav menu item
+        public static int navItemIndex = 0;
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,33 +45,51 @@ namespace project
             // Set our view from the "home" layout resource  
             SetContentView(Resource.Layout.activity_home);
 
+            // Create ActionBarDrawerToggle button and add it to the toolbar  
+            toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.home_tool_bar);
+            SetSupportActionBar(toolbar);
+
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+
+            // Nav Header Value
+            navHeader = navigationView.GetHeaderView(0);
+            txtFullName = (TextView)navHeader.FindViewById(Resource.Id.txtFullName);
+            ISharedPreferences pref = Application.Context.GetSharedPreferences("UserInfo", FileCreationMode.Private);
+            string userName = pref.GetString("Usernam", String.Empty);
+            txtFullName.Text = userName.Trim();
+
+            fab.Click += delegate
+            {
+                Intent cartIntent = new Intent(this, typeof(Cart));
+                this.StartActivity(cartIntent);
+            };
+
+            // initializing navigation menu
+
+            drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
+            drawerLayout.AddDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
+
+            navigationView.SetCheckedItem(Resource.Id.nav_menu); // Set your home screen                  
+            navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+            //setupDrawerContent(navigationView); //Calling Function  
+
             f1 = new HomeMenuFragment(this);
             //f2 = new MyLibraryMenuFragment(this, userName);
             //f3 = new StoreMenuFragment(this, userName);
             //f4 = new AboutusFragment(this, userName);
             setFragment(f1);
+        }
 
-            // Create ActionBarDrawerToggle button and add it to the toolbar  
-            toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.home_tool_bar);
-            SetSupportActionBar(toolbar);
-
-            fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            fab.Click += delegate
-            {
-            Intent cartIntent = new Intent(this, typeof(Cart));
-            this.StartActivity(cartIntent);
-            };
-
-            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            
-            drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
-            drawerLayout.AddDrawerListener(drawerToggle);
-            drawerToggle.SyncState();
-
-            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-            navigationView.SetCheckedItem(Resource.Id.nav_menu); // Set your home screen                  
-            navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
-            //setupDrawerContent(navigationView); //Calling Function  
+        // show or hide the fab
+        private void toggleFab()
+        {
+            if (navItemIndex == 0)
+                fab.Show();
+            else
+                fab.Hide();
         }
 
         //define action for navigation menu selection
@@ -80,6 +100,8 @@ namespace project
                 case (Resource.Id.nav_menu):
                     e.MenuItem.SetCheckable(true);
                     setFragment(f1);
+                    navItemIndex = 0;
+                    toggleFab();
                     //Intent home = new Intent(this, typeof(Home));
                     //this.StartActivity(home);
                     break;
@@ -88,18 +110,43 @@ namespace project
                     e.MenuItem.SetCheckable(true);
                     Intent cartIntent = new Intent(this, typeof(Cart));
                     this.StartActivity(cartIntent);
+                    navItemIndex = 1;
+                    toggleFab();
                     break;
+
                 case (Resource.Id.nav_orders):
                     e.MenuItem.SetCheckable(true);
                     Intent order = new Intent(this, typeof(OrderStatus));
                     this.StartActivity(order);
+                    navItemIndex = 2;
+                    toggleFab();
+
                     break;
 
                 case (Resource.Id.nav_log_out):
                     e.MenuItem.SetCheckable(true);
                     Intent logout = new Intent(this, typeof(SignOut));
                     this.StartActivity(logout);
+                    navItemIndex = 4;
+                    toggleFab();
                     break;
+
+                case (Resource.Id.nav_settings):
+                    e.MenuItem.SetCheckable(true);
+                    //Intent logout = new Intent(this, typeof(SignOut));
+                    //this.StartActivity(logout);
+                    navItemIndex = 5;
+                    toggleFab();
+                    break;
+
+                case (Resource.Id.nav_about_us):
+                    e.MenuItem.SetCheckable(true);
+                    //Intent logout = new Intent(this, typeof(SignOut));
+                    //this.StartActivity(logout);
+                    navItemIndex = 6;
+                    toggleFab();
+                    break;
+
             }
 
             // Close drawer after the use
@@ -146,7 +193,9 @@ namespace project
 
 
             FragmentTransaction fragmentTransaction = FragmentManager.BeginTransaction();
-            fragmentTransaction.Replace(Resource.Id.frameLayout1, fragment);
+            //fragmentTransaction.SetCustomAnimations(Resource.Animation.fade_in, Resource.Animation.fade_out);
+            fragmentTransaction.Replace(Resource.Id.frameLayout, fragment);
+            //fragmentTransaction.commitAllowingStateLoss();
             fragmentTransaction.Commit();
 
         }

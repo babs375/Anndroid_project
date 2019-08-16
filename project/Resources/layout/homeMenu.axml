@@ -8,15 +8,15 @@
 		android:layout_width="match_parent"
 		android:layout_height ="50dp"		
 		android:orientation="vertical"
-		android:background="#aeaaaa"
+		android:background="@color/primary"
 		android:layout_margin="5dp"
 		android:gravity="center">
 		<TextView
-        android:id="@+id/popular_books"
+        android:id="@+id/eatables"
         android:layout_width="match_parent" 
         android:layout_height="50dp"
 		android:text="Eatables"
-		android:textColor="#ffffff"
+		android:textColor="@color/primary_material_light"
 		android:layout_marginTop="25dp"
 		android:layout_marginLeft="10dp"
 		/>
@@ -40,15 +40,15 @@
 		android:layout_width="match_parent"
 		android:layout_height ="50dp"		
 		android:orientation="vertical"
-		android:background="#aeaaaa"
+		android:background="@color/primary"
 		android:layout_margin="5dp"
 		android:gravity="top">
 		<TextView
-        android:id="@+id/recent_books"
+        android:id="@+id/beverages"
         android:layout_width="match_parent" 
         android:layout_height="50dp"
 		android:text="Beverages"
-		android:textColor="#ffffff"
+		android:textColor="@color/primary_material_light"
 		android:layout_marginTop="15dp"
 		android:layout_marginLeft="10dp"
 		/>

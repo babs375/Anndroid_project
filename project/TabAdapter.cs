@@ -26,6 +26,11 @@ namespace project
             mFragmentTitleList.Add(title);
         }
 
+        public void RemoveFragment()
+        {
+            mFragmentList.Clear();
+            mFragmentTitleList.Clear();
+        }
 
         public override V4.Fragment GetItem(int position)
         {

@@ -4,7 +4,15 @@ C:\Users\AMITH\source\repos\project\project\bin\Debug\project.project.apk
 C:\Users\AMITH\source\repos\project\project\bin\Debug\project.project-Signed.apk
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\MonoAndroid,Version=v9.0.AssemblyAttributes.cs
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\project.nuget.stamp
-C:\Users\AMITH\source\repos\project\project\obj\Debug\90\project.csprojAssemblyReference.cache
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\Xamarin.GooglePlayServices.Basement.dll.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\Xamarin.GooglePlayServices.Tasks.dll.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\Xamarin.GooglePlayServices.Base.dll.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\Xamarin.GooglePlayServices.Location.dll.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\proguard\dc663e480.txt
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\dc663e48.proguard.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\0757626b.proguard.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\2f4d086a.proguard.stamp
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\XbdMerge\effb2371.proguard.stamp
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\libraryimports.cache.stamp
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res.flag
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\project.csproj.CoreCompileInputs.cache
@@ -110,6 +118,10 @@ C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\drawable\pomegranat
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\drawable\pomegranate_yogurt.jpg
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\layout\activity_order_status.xml
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\layout\order_layout.xml
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\layout\splashscreen.xml
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\anim\fade_out.xml
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\anim\fade_in.xml
+C:\Users\AMITH\source\repos\project\project\obj\Debug\90\res\drawable\my_location.png
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\R.cs.flag
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\R.txt
 C:\Users\AMITH\source\repos\project\project\obj\Debug\90\uploadflags.txt

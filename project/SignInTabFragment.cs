@@ -94,11 +94,8 @@ namespace project
 
         private void BtnSignUp_Click(object sender, System.EventArgs e)
         {
-            Toast.MakeText(Application.Context, "Textview Click Event", ToastLength.Short).Show();
-            //Intent signup = new Intent(this, typeof(SignUp));
-
-            //this.StartActivity(signup);
-
+            Intent signup = new Intent(Application.Context, typeof(LoginActivity));
+            this.StartActivity(signup);
         }
 
         public bool Validate()

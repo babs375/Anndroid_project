@@ -17,14 +17,13 @@ namespace project
     {
         RecyclerView mRecycleView, mRecycleView1;
 
-        PhotoAlbum mPhotoAlbum;
-        PhotoAlbum1 mPhotoAlbum1;
+        FoodObject1 mFoodObject1; FoodObject mFoodObject;
 
-        PhotoAlbumAdapter mAdapter;
-        PhotoAlbumAdapter1 mAdapter1;
+        FoodObjectAdapter mAdapter; FoodObjectAdapter1 mAdapter1;
         View myView;
         Activity myContext;
         public string userEmail;
+        public HomeMenuFragment() { }
         public HomeMenuFragment(Activity context)
         {
             myContext = context;
@@ -44,20 +43,20 @@ namespace project
 
             myView = inflater.Inflate(Resource.Layout.homeMenu, container, false);
 
-            //popular
-            mPhotoAlbum = new PhotoAlbum();
+            //eatables
+            mFoodObject = new FoodObject(); //passing category id
             mRecycleView = myView.FindViewById<RecyclerView>(Resource.Id.recyclerView);
             mRecycleView.SetLayoutManager(new LinearLayoutManager(myView.Context, LinearLayoutManager.Horizontal, false));
-            mAdapter = new PhotoAlbumAdapter(mPhotoAlbum);
+            mAdapter = new FoodObjectAdapter(mFoodObject);
             mAdapter.ItemClick += MAdapter_ItemClick;
             mRecycleView.SetAdapter(mAdapter);
             //
 
-            //recent
-            mPhotoAlbum1 = new PhotoAlbum1();
+            //beverage
+            mFoodObject1 = new FoodObject1(); //passing category id
             mRecycleView1 = myView.FindViewById<RecyclerView>(Resource.Id.recyclerView1);
             mRecycleView1.SetLayoutManager(new LinearLayoutManager(myView.Context, LinearLayoutManager.Horizontal, false));
-            mAdapter1 = new PhotoAlbumAdapter1(mPhotoAlbum1);
+            mAdapter1 = new FoodObjectAdapter1(mFoodObject1);
             mAdapter1.ItemClick += MAdapter_ItemClick1;
             mRecycleView1.SetAdapter(mAdapter1);
             //
@@ -69,7 +68,7 @@ namespace project
             Toast.MakeText(myView.Context, "This is photo number " + photoNum, ToastLength.Short).Show();
 
             Intent food = new Intent(myContext, typeof(FoodDetail)); // on success loading book page
-            int chk = mPhotoAlbum1[e].mFid;
+            int chk = mFoodObject[e].mFid;
             food.PutExtra("foodName", chk.ToString());
             StartActivity(food);
         }
@@ -78,6 +77,11 @@ namespace project
         {
             int photoNum = e + 1;
             Toast.MakeText(myView.Context, "This is photo number " + photoNum, ToastLength.Short).Show();
+
+            Intent food = new Intent(myContext, typeof(FoodDetail)); // on success loading book page
+            int chk = mFoodObject1[e].mFid;
+            food.PutExtra("foodName", chk.ToString());
+            StartActivity(food);
         }
     }
 }

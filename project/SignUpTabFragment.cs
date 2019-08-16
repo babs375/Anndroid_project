@@ -91,8 +91,8 @@ namespace project
                         edit.PutString("Usermail", fEmail);
                         edit.Apply();
 
-                        Intent home = new Intent(Application.Context, typeof(Home));
-                        this.StartActivity(home);
+                        Intent signin = new Intent(Application.Context, typeof(LoginActivity));
+                        this.StartActivity(signin);
                     }
 
                 }
@@ -108,10 +108,8 @@ namespace project
 
         private void BtnSignIn_Click(object sender, System.EventArgs e)
         {
-            Toast.MakeText(Application.Context, "Textview Click Event", ToastLength.Short).Show();
-            //Intent signup = new Intent(this, typeof(SignUp));
-
-            //this.StartActivity(signup);
+            Intent signin = new Intent(Application.Context, typeof(LoginActivity));
+            this.StartActivity(signin);
 
         }
 

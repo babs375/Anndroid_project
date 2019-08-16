@@ -17,8 +17,10 @@ namespace project.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Oid { get; set; }
-        public string Uid { get; set; }
-        public string Fid { get; set; }
+        public string Status { get; set; }
+        public string Address { get; set; }
+        public float Amount { get; set; }
+        public int Uid { get; set; }
 
     }
 }
